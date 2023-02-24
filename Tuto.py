@@ -6,7 +6,8 @@ from random import randint
 import sys
 import os
 
-# CODE HERE
+# CODE STARTS HERE 
+# GRAPHICAL INTERFACE FOR START MENU SETTINGS
 
 global rock1, paper1, scissor1, spock1, lizard1, rock2, paper2, scissor2, spock2, lizard2
 window = Tk()
@@ -15,22 +16,20 @@ window.config(bg='#3EDBF0')
 window.geometry('1990x900')
 welcome = Label(window, text="ROCK PAPER SCISSORS SPOCK LIZARD", bg='#3EDBF0', fg="black", font=("Arial Bold", 36))
 welcome.grid(row=1, padx=500, pady=(250, 0))
-
 player_name = Entry(window, width=27, borderwidth=9, bg="#FFA900",
                     justify='center', fg="black", font=("Arial Bold", 16))
-
 player_name.grid(pady=20, ipady=15, padx=500)
 player_name.insert(0, "PLAYER")
 
+
+# COMMAND TO DESTROY WINDOW
 
 def exit_game():
     window.destroy()
 
 
-def restart():
-    python = sys.executable
-    os.execl(python, python, *sys.argv)
 
+# COMMAND THAT SETS THE DIRECTIVES AND RESULTS OF WHEN A GAME ENDS
 
 def end_win(ans):
     end_window = Toplevel(window)
@@ -49,6 +48,9 @@ def end_win(ans):
 
     exit_btn.grid(row=5)
 
+
+
+# THOSE PARAMETERS DEFINE THE COMMNANDS THAT ARE THE MOST IMPORTANT FOR THE GOOD WORKING OF THE CODE
 
 def start():
     global rock1, paper1, scissor1, spock1, lizard1, rock2, paper2, scissor2, spock2, lizard2
@@ -77,11 +79,9 @@ def start():
 
     def computer_update():
         final = int(computer_score['text'])
-        #final2 = int(player_score['text'])
+    
         final += 1
-        #final2 += 1
         computer_score['text'] = str(final)
-        #computer_score['text'] = str(final2)
         if final == 3 or player_score + computer_score == 5:
             ans = player_score['text']
             start_window.destroy()
@@ -92,17 +92,19 @@ def start():
         final += 1
         player_score['text'] = str(final)
 
-
-    
         if player_score + computer_score == 5 or final == 3:
             start_window.destroy()
             ans = player_score['text']
             end_win(ans)
 
-
     options = ["rock", "paper", "scissors", "spock", "lizard"]
 
 
+
+
+
+
+    # PARAMETERS THAT ARE CHECKED TO SEE IF A GAME HAS BEEN WINNED AND THE REASONS OF THAT WIN
 
     def winner_check(p, c):
         if p == c:
@@ -241,6 +243,11 @@ def start():
 
         winner_check(msg, computer_choice)
 
+
+
+
+    # GRAPHICAL DEFINITION OF THE BUTTONS
+
     rock1_btn = Button(start_window, image=rock1, width=125, borderwidth=5, bg='#DA0037',
                        height=125, command=lambda: update_choice("rock"))
     rock1_btn.grid(row=2, column=0, padx=(70, 0), pady=(50, 0))
@@ -267,6 +274,11 @@ def start():
     lizard2_btn = Button(start_window, image=lizard2, width=125, borderwidth=5, bg='#150E56', height=125)
     lizard2_btn.grid(row=10, column=10)
 
+
+
+
+    # GRAPHICAL DEFINITION OF THE LABELS AND MESSAGES DISPLAYED
+
     player_label = Label(start_window, image=rock1, borderwidth=15, bg='#DA0037')
     player_label.grid(row=6, column=2, padx=(20, 200))
     computer_label = Label(start_window, image=rock2, borderwidth=15, bg='#150E56')
@@ -291,6 +303,9 @@ def start():
                     borderwidth=10)
     message2.grid(row=7, column=5)
 
+
+
+# RULES OF THE GAME AND A START BUTTON... THIS WINDOW CAN BE CLOSED IF NEEDED WITH MOUSE AND CURSOR
 
 def rules():
     rules_window = Toplevel(window)
@@ -327,6 +342,10 @@ def rules():
     start_btn1.grid()
 
 
+
+
+# LAYOUT OF START AND RULES BUTTON OF BEGINING
+
 start_btn = Button(window, text="START", borderwidth=9, bg="black", fg="#FFA900", font=("Arial Bold", 18),
                    command=start)
 start_btn.grid(row=4, padx=(100, 250))
@@ -334,5 +353,8 @@ start_btn.grid(row=4, padx=(100, 250))
 rules_btn = Button(window, text="RULES", borderwidth=9, bg="black", fg="#FFA900", font=("Arial Bold", 18),
                    command=rules)
 rules_btn.grid(row=4, padx=(250, 100))
+
+
+# CODE ENDS HERE
 
 window.mainloop()
